@@ -1,0 +1,32 @@
+component :drc_ass_block do ## {
+	parameter :URCHRP=>"6'h6", :RSHRQ=>"6'h7"
+
+	ports.declare (
+		:iUnreachableRspVld=>{:dir=>:i,:width=>1},
+		:iUnreachableRspSrcAddr=>{:dir=>:i,:width=>16},
+		:iUnreachableRspTargtPort=>{:dir=>:i,:width=>5}
+	)
+
+	ports.declare(
+		:oAssPktType=>{:dir=>:o,:width=>6}
+	)
+
+	connect (:from=>rAssPktType,:to=>oAssPktType,:w=>6)
+
+	arbitorFeature do ## {
+		clock :iClk
+		reset :iResetn
+		conditions (
+			'iUnreachableRspVld==1'=> {
+				:rAssPktType=>:URCHRP
+				:rAssPktVld=>'1b1'
+			},
+			'iUploadRspVld==1'=>{
+				:rAssPktType=>:UPRSP
+				:rAssPktVld=>'1b1'
+			}
+		)
+	end ## }
+
+
+end ## }
