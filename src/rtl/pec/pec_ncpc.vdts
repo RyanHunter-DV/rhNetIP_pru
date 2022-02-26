@@ -1,0 +1,28 @@
+require 'sigpools/pru'
+
+## features
+## dnum -> the device number indicates the max limit of number that a pru can
+## connect to other devices.
+design :pec_ncpc, :dnum=>16 do ##{
+
+	spec <<-EOF
+		pec_ncpc is a ncp converter that receives ncp packets and stored into
+		a fifo.
+	EOF
+
+	signal :iClk,:in
+	signal :iResetN, :in
+
+	signal :fifoFull, :out
+	signal :fifoEmpty, :out
+
+	dev = feature.dnum;
+	for i in 0..(dev-1) do
+		ncpIf "ncp#{i}".to_sym
+	end
+
+
+
+
+
+end ##}

@@ -1,0 +1,17 @@
+sigpool :ncpIf do ##{
+
+	signal :rxPktVld,:in
+	signal :rxPktType,:in,6
+	signal :rxPktAck,:out
+	signal :rxPktSrcIP,:in,32
+	signal :rxPktTrgtIP,:in,32
+	signal :rxPktData,:in,128
+
+	signal :txPktVld,:out
+	signal :txPktType,:out,6
+	signal :txPktAck,:in
+	signal :txPktSrcIP,:out,32
+	signal :txPktTrgtIP,:out,32
+	signal :txPktData,:out,128
+
+end ##}
