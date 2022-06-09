@@ -1,0 +1,5 @@
+cdir = File.dirname(File.absolute_path(__FILE__));
+compopt :xlm,"-incdir #{cdir}"
+
+fileset 'pru_portIf.v'
+fileset 'pru_top.v'
